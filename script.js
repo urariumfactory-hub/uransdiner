@@ -87,6 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             console.log("Form submit started.");
 
+            // 送信時刻（日本時間）をセット
+            const submittedAt = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+            const submittedAtInput = document.getElementById('submitted-at');
+            if (submittedAtInput) {
+                submittedAtInput.value = submittedAt;
+                console.log("Submission time set:", submittedAt);
+            }
+
             // 送信ボタンを無効化（二重送信防止）
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
