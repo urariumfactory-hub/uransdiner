@@ -717,6 +717,43 @@ nav {
     font-family: var(--font-body);
 }
 
+.description small {
+    display: inline-block;
+    /* 付箋のサイズ感を出す */
+    margin-top: 0.8rem;
+    padding: 0.5rem 1rem;
+    background-color: #fffbcf;
+    /* より付箋らしい明るいイエロー */
+    color: #5d4037;
+    /* 読みやすい濃いブラウン */
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: 'Courier New', Courier, monospace;
+    /* タイプライター/手書き風 */
+    border-left: 2px solid #fbc02d;
+    /* 付箋の端のアクセント */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1.5deg);
+    /* 適度なナナメ感 */
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.description small::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20%;
+    width: 40px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    /* セロハンテープ風の演出 */
+    backdrop-filter: blur(1px);
+    transform: rotate(2deg);
+    z-index: -1;
+}
+
 /* Recommended Item Box */
 .menu-item.recommended {
     border: 3px solid var(--diner-red);
