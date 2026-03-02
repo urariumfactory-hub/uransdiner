@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uran's Creative Diner | Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Uran's Diner</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Main</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="works.html">Works</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="section-title">
+            <h1>Order Slip</h1>
+            <p>ご注文・ご相談はこちらの伝票にご記入ください。</p>
+        </div>
+
+        <div class="order-slip">
+            <form action="https://formspree.io/f/mgolbgoo" method="POST" id="contact-form">
+
+                <h3 style="text-align:center; margin-bottom: 2rem;">ORDER TICKET #2026</h3>
+
+                <div id="form-inputs">
+                    <label for="name">Name (Guest Name)</label>
+                    <input type="text" id="name" name="name" placeholder="お名前" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="メールアドレス" required>
+
+                    <label for="type">Order Type</label>
+                    <select id="type" name="type"
+                        style="width: 100%; padding: 10px; margin-bottom: 1rem; background: transparent; border: none; border-bottom: 2px solid #1a1a1a;">
+                        <option value="" disabled selected>選択してください</option>
+                        <option value="SNS Icon">SNS Icon</option>
+                        <option value="Character Design">Character Design</option>
+                        <option value="Omakase Course">Omakase Course</option>
+                        <option value="Full Illustration">Full Illustration</option>
+                        <option value="Logo Animation">Logo Animation</option>
+                        <option value="Short Video">Short Video</option>
+                        <option value="Video Creation">Video Creation</option>
+                        <option value="Accessory">Accessory</option>
+                        <option value="Key holder">Key holder</option>
+                        <option value="Sticker">Sticker</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="message">Details (Special Requests)</label>
+                    <textarea id="message" name="message" rows="5" placeholder="ご相談内容" required></textarea>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" id="next-to-confirm" class="btn">Confirm Order</button>
+                    </div>
+                </div>
+
+                <div id="confirm-container" style="display: none;">
+                    <h4
+                        style="text-align: center; color: var(--diner-dark); margin-bottom: 1.5rem; font-family: var(--font-subheading);">
+                        ORDER REVIEW</h4>
+                    <div class="confirm-item">
+                        <span class="label">NAME:</span>
+                        <span id="confirm-name" class="val"></span>
+                    </div>
+                    <div class="confirm-item">
+                        <span class="label">EMAIL:</span>
+                        <span id="confirm-email" class="val"></span>
+                    </div>
+                    <div class="confirm-item">
+                        <span class="label">TYPE:</span>
+                        <span id="confirm-type" class="val"></span>
+                    </div>
+                    <div class="confirm-item">
+                        <span class="label">DETAILS:</span>
+                        <p id="confirm-message" class="val" style="white-space: pre-wrap; margin-top: 0.5rem;"></p>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-around; margin-top: 3rem; gap: 1rem;">
+                        <button type="button" id="back-to-edit" class="btn"
+                            style="background: #888; box-shadow: 4px 4px 0px #333;">Back to Edit</button>
+                        <button type="submit" class="btn">Place Order</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Uran's Creative Diner. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
