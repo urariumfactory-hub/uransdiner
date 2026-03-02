@@ -87,6 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             console.log("Form submit started.");
 
+            // 調理中オーバーレイを表示
+            const cookingOverlay = document.getElementById('cooking-overlay');
+            if (cookingOverlay) {
+                cookingOverlay.style.display = 'flex';
+            }
+
             // 送信時刻（日本時間）をセット
             const submittedAt = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
             const submittedAtInput = document.getElementById('submitted-at');
@@ -95,14 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Submission time set:", submittedAt);
             }
 
-            // 送信ボタンを無効化（二重送信防止）
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Sending...';
-            }
-
             const formData = new FormData(form);
+
+            const startTime = Date.now();
 
             try {
                 console.log("Fetching Formspree...");
@@ -116,26 +117,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     console.log("Formspree response OK.");
-                    // 送信成功時：フェードアウトのアニメーションを実行して遷移
-                    document.body.classList.remove('fade-in');
+
+                    // 最低1秒間は表示を維持するための計算
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, 1000 - elapsedTime);
+
                     setTimeout(() => {
-                        window.location.href = 'order_confirmation.html';
-                    }, 500);
+                        // 送信成功時：フェードアウトのアニメーションを実行して遷移
+                        document.body.classList.remove('fade-in');
+                        setTimeout(() => {
+                            window.location.href = 'order_confirmation.html';
+                        }, 500);
+                    }, remainingTime);
                 } else {
                     console.error("Formspree response Error:", response.status);
+                    if (cookingOverlay) cookingOverlay.style.display = 'none';
                     alert('送信に問題が発生しました。後でもう一度お試しください。');
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.innerText = 'Place Order';
-                    }
                 }
             } catch (error) {
                 console.error("Fetch Error:", error);
+                if (cookingOverlay) cookingOverlay.style.display = 'none';
                 alert('エラーが発生しました。インターネット接続を確認してください。');
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'Place Order';
-                }
             }
         });
     }

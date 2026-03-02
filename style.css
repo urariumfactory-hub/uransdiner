@@ -887,3 +887,112 @@ footer {
         margin: 0;
     }
 }
+
+/* Cooking Overlay Styles */
+#cooking-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cooking-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--diner-red);
+    margin-top: 2rem;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.cooking-content p {
+    font-size: 1.1rem;
+    color: var(--diner-dark);
+}
+
+/* Frying Pan Animation */
+.pan-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.pan {
+    width: 100%;
+    height: 20px;
+    background: #333;
+    border-radius: 0 0 50px 50px;
+    position: absolute;
+    bottom: 20px;
+}
+
+.pan::after {
+    content: '';
+    width: 70px;
+    height: 8px;
+    background: #333;
+    position: absolute;
+    right: -60px;
+    top: -4px;
+    border-radius: 5px;
+}
+
+.cooking-item {
+    width: 30px;
+    height: 10px;
+    background: var(--diner-red);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 45px;
+    left: 45px;
+    animation: toss 0.8s infinite ease-in-out;
+}
+
+@keyframes toss {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+#cooking-overlay .pan-container {
+    animation: jitter 0.2s infinite;
+}
+
+@keyframes jitter {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 1px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translate(1px, -1px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+}
