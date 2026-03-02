@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@400;700&family=Inter:wght@400;500;700&family=Zen+Kurenaido&display=swap');
 
 :root {
     --diner-red: #D12E2E;
@@ -9,6 +9,7 @@
     --diner-dark: #1A1A1A;
     --diner-white: #FFFFFF;
     --font-heading: 'Lobster', cursive;
+    --font-jp-hand: 'Zen Kurenaido', sans-serif;
     --font-subheading: 'Oswald', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
@@ -440,8 +441,48 @@ nav {
 
 .section-title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
+
+.section-title h1,
+.section-title h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--diner-red);
+    /* 黒からダイナーレッドに変更 */
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.section-title p {
+    font-family: var(--font-jp-hand);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--diner-red);
+    max-width: fit-content;
+    /* 内容に合わせて幅を調整 */
+    margin: 1rem auto 0;
+    line-height: 1.6;
+    padding: 2.5rem 4rem;
+    background-color: #fffdf5;
+    /* 招待状のような温かいクリーム色で塗りつぶし */
+    display: block;
+    /* 確実に改行されるように block に変更 */
+    position: relative;
+    letter-spacing: 2px;
+    /* 多層レイヤーによる塗りつぶし枠線デザイン */
+    border: 2px solid var(--diner-blue);
+    /* 内側の濃い線 */
+    box-shadow:
+        0 0 0 4px #E3F2FD,
+        /* 線の間の塗りつぶし（薄い青） */
+        0 0 0 6px var(--diner-blue),
+        /* 外側の濃い線 */
+        12px 12px 25px rgba(0, 0, 0, 0.1);
+    /* リッチなドロップシャドウ */
+    border-radius: 4px;
+    z-index: 1;
+}
+
 
 /* Cards */
 .grid {
