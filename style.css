@@ -848,3 +848,42 @@ footer {
     padding: 2rem 0;
     margin-top: 4rem;
 }
+
+/* Confirmation Container Styling */
+.confirm-item {
+    border-bottom: 1px dashed #ccc;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.confirm-item .label {
+    font-family: var(--font-subheading);
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.confirm-item .val {
+    font-size: 1.1rem;
+    color: var(--diner-dark);
+    word-break: break-all;
+}
+
+#confirm-container h4 {
+    border-bottom: 2px solid var(--diner-dark);
+    padding-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    #confirm-container div[style*="display: flex"] {
+        flex-direction: column-reverse !important;
+        gap: 1rem !important;
+    }
+
+    #confirm-container .btn {
+        width: 100%;
+        margin: 0;
+    }
+}

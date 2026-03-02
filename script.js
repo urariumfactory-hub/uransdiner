@@ -48,15 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtn = document.querySelector('#back-to-edit');
 
     if (form) {
+        console.log("Contact form found.");
         // 次へ（確認画面）へ
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
+                console.log("Confirm button clicked.");
                 // 基本的なバリデーション
                 if (!form.checkValidity()) {
+                    console.log("Form validation failed.");
                     form.reportValidity();
                     return;
                 }
 
+                console.log("Form validation passed. Switching to confirmation view.");
                 // 入力内容を確認画面に反映
                 document.getElementById('confirm-name').innerText = document.getElementById('name').value;
                 document.getElementById('confirm-email').innerText = document.getElementById('email').value;
@@ -73,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 戻る（編集画面）へ
         if (backBtn) {
             backBtn.addEventListener('click', () => {
+                console.log("Back to edit button clicked.");
                 confirmContainer.style.display = 'none';
                 formInputs.style.display = 'block';
             });
@@ -80,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log("Form submit started.");
 
             // 送信ボタンを無効化（二重送信防止）
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -91,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
 
             try {
+                console.log("Fetching Formspree...");
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
@@ -100,12 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
+                    console.log("Formspree response OK.");
                     // 送信成功時：フェードアウトのアニメーションを実行して遷移
                     document.body.classList.remove('fade-in');
                     setTimeout(() => {
                         window.location.href = 'order_confirmation.html';
                     }, 500);
                 } else {
+                    console.error("Formspree response Error:", response.status);
                     alert('送信に問題が発生しました。後でもう一度お試しください。');
                     if (submitBtn) {
                         submitBtn.disabled = false;
@@ -113,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } catch (error) {
+                console.error("Fetch Error:", error);
                 alert('エラーが発生しました。インターネット接続を確認してください。');
                 if (submitBtn) {
                     submitBtn.disabled = false;
